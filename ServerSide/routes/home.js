@@ -29,7 +29,7 @@ router.get('/autocomplete/artist/:searched',function(req,res){
             res.status(200).end(JSON.stringify(json));
         }
     }else {
-        res.sendFile(path + '/login.html');
+        res.status(200).end(JSON.stringify({code:1}));
     }
 });
 
@@ -44,7 +44,7 @@ router.get('/autocomplete/genere/:searched',function(req,res){
             res.status(200).end(JSON.stringify(json));
         }
     }else {
-        res.sendFile(path + '/login.html');
+        res.status(200).end(JSON.stringify({code:1}));
     }
 });
 
@@ -61,34 +61,31 @@ router.get('/',function(req,res){
 
 router.get('/multiForm',function(req,res){
     if(req.session && req.session.islog === 1){
-        res.sendFile(path +'/multiStepForm.html');
+        res.status(200).end(JSON.stringify({code:2}));
     }else {
-        res.sendFile(path + '/login.html');
+        res.status(200).end(JSON.stringify({code:1}));
     }
 });
 
 router.get('/login',function(req,res){
    if(req.session && req.session.islog===1){
        if(req.session.completed === 0){
-           res.sendFile(path+'/multiStepForm.html');
+        res.status(200).end(JSON.stringify({code:2}));
        }else{
-           res.sendFile(path +'/PlayAround.html');
+        res.status(200).end(JSON.stringify({code:3}));
        }
    }else{
-       res.sendFile(path + '/login.html');
+    res.status(200).end(JSON.stringify({code:1}));
    }
 });
 
 router.get('/webApp',function(req,res){
+    console.log(req.session.islog);
     if(req.session && req.session.islog === 1){
-        res.sendFile(path +'/PlayAround.html');
+        res.status(200).end(JSON.stringify({code:3}));
     }else {
-        res.sendFile(path + '/login.html');
+        res.status(200).end(JSON.stringify({code:1}));
     }
-});
-
-router.get('/registration',function(req,res){
-    res.sendFile(path +'/registration.html');
 });
 
 router.get('/tokenExpired',function(req,res){
