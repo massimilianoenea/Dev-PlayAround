@@ -1,0 +1,36 @@
+{
+  "name": "playaroundgit",
+  "version": "1.0.0",
+  "description": "playaround musicApp",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-multiparty": "^2.1.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "fluent-ffmpeg": "^2.1.2",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.6.5",
+    "socket.io": "^2.1.1",
+    "socket.io-stream": "^0.9.1",
+    "through2": "^2.0.3",
+    "ua-parser-js": "^0.7.18",
+    "xtend": "^4.0.1",
+    "ytdl-core": "^0.20.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/massimilianoenea/PlayAround.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/massimilianoenea/PlayAround/issues"
+  },
+  "homepage": "https://github.com/massimilianoenea/PlayAround#readme"
+}
