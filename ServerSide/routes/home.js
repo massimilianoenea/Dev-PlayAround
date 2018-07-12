@@ -80,11 +80,10 @@ router.get('/login',function(req,res){
 });
 
 router.get('/webApp',function(req,res){
-    console.log(req.session.islog);
     if(req.session && req.session.islog === 1){
         res.status(200).end(JSON.stringify({code:3}));
     }else {
-        res.status(200).end(JSON.stringify({code:1}));
+       res.status(200).end(JSON.stringify({code:1}));
     }
 });
 

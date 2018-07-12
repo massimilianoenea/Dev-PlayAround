@@ -27,10 +27,9 @@ router.get("/search/:string",function(req,res){
               res.status(a.status).end(JSON.stringify(a));
           }
        });
-
    }else{
-       res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-       res.end();
+       res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+        res.end();
    }
 });
 
@@ -45,7 +44,7 @@ router.get("/playlist_giornaliera/:data",function(req,res){
                     json.push({
                         nome: a.data[playlist].NOME,
                         codice: a.data[playlist].CODPLAYLIST,
-                        immagine: "image/playlist/mood/" + a.data[playlist].CODPLAYLIST + ".jpg"
+                        immagine: "/image/playlist/mood/" + a.data[playlist].CODPLAYLIST + ".jpg"
                     });
                 }
             } else {
@@ -54,8 +53,8 @@ router.get("/playlist_giornaliera/:data",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        //res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.status(400).end();
     }
 });
 
@@ -82,8 +81,7 @@ router.get("/ascoltati_recente",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.status(400).end();
     }
 });
 
@@ -110,8 +108,7 @@ router.get("/ascoltano_amici",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.status(400).end();
     }
 });
 
@@ -134,8 +131,8 @@ router.get("/utente/:username",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -146,8 +143,8 @@ router.post("/add_amico",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -158,8 +155,8 @@ router.post("/delete_amico",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -186,8 +183,8 @@ router.get("/ascoltati_recente_utente/:username",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -214,8 +211,8 @@ router.get("/artisti_seguiti/:username",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -243,8 +240,8 @@ router.get("/artista/:codartista",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -293,8 +290,8 @@ router.post("/unfollow_artista",function (req,res) {
             res.status(a.status).end(JSON.stringify(a));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -317,8 +314,8 @@ router.get("/get_album/:codalbum",function(req,res){
             }
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -344,8 +341,8 @@ router.get("/get_brani_album/:codalbum",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -369,8 +366,8 @@ router.get("/get_altro_artista/:codartista",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -401,8 +398,8 @@ router.get("/get_brani_playlist/:codplaylist",function (req,res) {
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -418,8 +415,8 @@ router.get("/nome_playlist/:codplaylist",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -457,8 +454,8 @@ router.post("/nuova_playlist" ,function (req,res){
             }
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -472,8 +469,8 @@ router.post("/delete_playlist",function (req,res){
             }
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -487,8 +484,8 @@ router.post("/add_song",function(req,res){
          }
      });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -502,8 +499,8 @@ router.post("/delete_song",function(req,res){
             }
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -531,8 +528,8 @@ router.get("/canzoni_salvate",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -588,8 +585,8 @@ router.get("/artisti_seguiti",function (req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -640,8 +637,8 @@ router.get("/playlist_genere",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -664,8 +661,8 @@ router.get("/playlist_mood",function(req,res){
             res.status(a.status).end(JSON.stringify(json));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -711,8 +708,8 @@ router.post("/setPreferito",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -723,8 +720,8 @@ router.post("/removePreferito",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -779,8 +776,8 @@ router.get("/brano_titolo/:titolo",function(req,res){
         });
     }else{
         // POTREBBE REINDIRIZZARE AL LOGIN
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 
@@ -790,8 +787,8 @@ router.post("/setBranoAscoltato",function(req,res){
             res.status(a.status).end(JSON.stringify(a));
         });
     }else{
-        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
-        res.end();
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+       res.end();
     }
 });
 

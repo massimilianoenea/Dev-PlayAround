@@ -62,7 +62,7 @@ app.all('*',function(req, res, next) {
         res.writeHead(200, {
             'Access-Control-Allow-Origin':origin,
             'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept',
             'Access-Control-Allow-Credentials': 'true',
             'Content-Length': 0
         });
