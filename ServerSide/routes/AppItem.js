@@ -28,7 +28,7 @@ router.get("/search/:string",function(req,res){
           }
        });
    }else{
-       res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login.html' });
+        res.writeHead(301, { "Location": "http://" + req.get('host')+ '/public/login.html' });
         res.end();
    }
 });
@@ -121,7 +121,7 @@ router.get("/utente/:username",function(req,res){
             if(a.status === 200) {
                 json = {
                     username: a.data[0].USERNAME,
-                    immagine: "image/profile/" + a.data[0].USERNAME+".png",
+                    immagine: "/image/profile/" + a.data[0].USERNAME+".png",
                     amici: a.amici
                 };
             }else{
@@ -430,7 +430,7 @@ router.get("/le_tue_playlist",function(req,res){
                    json.push({
                        nome: a.data[playlist].NOME_PLAYLIST,
                        codice: a.data[playlist].CODPLAYLIST,
-                       immagine: "image/playlist/" + a.data[playlist].CODPLAYLIST+".jpg"
+                       immagine: "/image/playlist/" + a.data[playlist].CODPLAYLIST+".jpg"
                    });
                }
            }else{
@@ -602,7 +602,7 @@ router.get("/get_amici",function(req,res){
                    json.push({
                        nome: a.data[utente].USERNAME,
                        codice: a.data[utente].CODUTENTE,
-                       immagine: "image/profile/"+a.data[utente].USERNAME+".png"
+                       immagine: "/image/profile/"+a.data[utente].USERNAME+".png"
                    });
                }
            }else{
@@ -628,7 +628,7 @@ router.get("/playlist_genere",function(req,res){
                     json.push({
                         nome: a.data[playlist].NOME,
                         codice: a.data[playlist].CODPLAYLIST,
-                        immagine: "image/playlist/" + a.data[playlist].CODPLAYLIST + ".jpeg"
+                        immagine: "/image/playlist/" + a.data[playlist].CODPLAYLIST + ".jpeg"
                     });
                 }
             } else {
@@ -652,7 +652,7 @@ router.get("/playlist_mood",function(req,res){
                     json.push({
                         nome: a.data[playlist].NOME,
                         codice: a.data[playlist].CODPLAYLIST,
-                        immagine: "image/playlist/mood/" + a.data[playlist].CODPLAYLIST + ".jpg"
+                        immagine: "/image/playlist/mood/" + a.data[playlist].CODPLAYLIST + ".jpg"
                     });
                 }
             } else {
