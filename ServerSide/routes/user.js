@@ -65,7 +65,7 @@ router.post('/logout',function(req,res){
 });
 
 router.post('/singup',function(req,res){
-    log.Get_singup(req.body,req.get('host'),function(a){
+    log.Get_singup(req.body.user,req.body.host,function(a){
         res.end(JSON.stringify(a));
     });
 });

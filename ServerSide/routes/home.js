@@ -9,10 +9,10 @@ app.use(router);
 router.get('/confirm_registration/:token',function(req,res){
     log.Confirm_singup(req.params.token,function(a){
         if(a.code === 0){
-            res.writeHead(301, { "Location": "http://" + req.get('host')+ '/login' });
+            res.writeHead(301, { "Location": "http://" + req.get('host')+ '/public/login.html' });
             res.end();
         }else{
-            res.writeHead(301, { "Location": "http://" + req.get('host') + '/tokenExpired' });
+            res.writeHead(301, { "Location": "http://" + req.get('host') + '/public/tokenExpired.html' });
             res.end();
         }
     });
@@ -85,10 +85,6 @@ router.get('/webApp',function(req,res){
     }else {
        res.status(200).end(JSON.stringify({code:1}));
     }
-});
-
-router.get('/tokenExpired',function(req,res){
-    res.sendFile(path +'/tokenScaduto.html');
 });
 
 module.exports = router;
