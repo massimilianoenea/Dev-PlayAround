@@ -277,7 +277,7 @@ io.on('connection', function(client) {
                 var SocketofClient = io.sockets.connected[clientId];
                 //if (SocketofClient.id !== client.id) {
                     var mimeType="";
-                    if(parser.setUA(SocketofClient.request.headers['user-agent']).getBrowser().name === 'Chrome'){
+                    if(parser.setUA(SocketofClient.request.headers['user-agent']).getBrowser().name !== 'Firefox'){
                         mimeType="mpeg";
                     }else{
                         mimeType="webm";
