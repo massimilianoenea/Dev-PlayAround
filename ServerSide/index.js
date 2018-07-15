@@ -286,30 +286,23 @@ io.on('connection', function(client) {
                     var requestUrl = "";
                     var titolo = "";
                     var duration = 1;
-                    var filename = __dirname + '/penningen.mp3';
+                    var filename = __dirname + '/error.mp3';
                     linkBrano.GetLinkBrano(data.codbrano,function(a){
-                       if(a.code === 0 || a.link !== undefined || a.link !== 'undefined'){
+                       if(a.code === 0 && (a.link !== undefined || a.link !== 'undefined')){
                            requestUrl = 'http://youtube.com/watch?v=' + a.link;
                            titolo = a.titolo;
-                       }else{
-                           requestUrl = "";
-                       }
-
-                         ytdl.getInfo(requestUrl,{downloadURL: false},function(err, info) {
-                            if (err) duration = 1 ;
+                           ytdl.getInfo(requestUrl,{downloadURL: false},function(err, info) {
                             duration = info.length_seconds;
                             ss(SocketofClient).emit('audio-stream', stream, {duration: duration,mime:mimeType});
-                             client.in(data.username).emit('message',{username:data.username ,img:'/image/profile/' + data.username +'.png',canzone:{titolo:titolo,id:data.codbrano}});
-                        });
-
-                        try {
+                            client.in(data.username).emit('message',{username:data.username ,img:'/image/profile/' + data.username +'.png',canzone:{titolo:titolo,id:data.codbrano}});
                             youtubeStream(requestUrl,mimeType).pipe(stream);
-                        } catch (exception) {
+                        });
+                       }else{
+                            ss(SocketofClient).emit('audio-stream', stream, {duration: duration,mime:mimeType});
                             fs.createReadStream(filename).pipe(stream);
                         }
                     });
-                    //fs.createReadStream(filename).pipe(stream);
-               // }
+
             }
         }else{
             io.sockets.in(data.username+"_player").emit('newSetDevice',data.username);

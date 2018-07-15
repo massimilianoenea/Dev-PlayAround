@@ -13,7 +13,7 @@ module.exports = {
         var mailOptions = {
             from: 'playaround.notreply@gmail.com',
             to: destinatario,
-            subject: 'Sending Email using Node.js',
+            subject: 'Benvenuto in Playaround. Grazie a questo link potrai confermare il tuo account',
             text: 'Questo è il tuo link di registrazione: '+url+"/confirm_registration/" +tok
         };
         return mailOptions;

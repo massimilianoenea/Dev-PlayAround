@@ -9,7 +9,7 @@ app.use(router);
 router.get('/confirm_registration/:token',function(req,res){
     log.Confirm_singup(req.params.token,function(a){
         if(a.code === 0){
-            res.writeHead(301, { "Location": "http://" + req.get('host')+ '/public/login.html' });
+            res.writeHead(301, { "Location": "http://" + req.get('host')+ '/public/regCompleted.html' });
             res.end();
         }else{
             res.writeHead(301, { "Location": "http://" + req.get('host') + '/public/tokenExpired.html' });
@@ -53,10 +53,6 @@ router.post('/Complete_Reg',function(req,res){
         if(a.status === 200) req.session.completed = 1;
         res.status(a.status).end(JSON.stringify(a));
     });
-});
-
-router.get('/',function(req,res){
-    res.sendFile(path +'/homepage.html');
 });
 
 router.get('/multiForm',function(req,res){
