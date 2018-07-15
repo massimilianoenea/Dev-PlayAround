@@ -143,8 +143,8 @@ module.exports = {
     },
 
     new_playlist: function(email,nomePlaylist,callback){
-        var img = Math.floor(Math.random() * 10) + 1;
-        playlist_model.new_playlist(email,img,nomePlaylist, function (err, succ, code) {
+        var codImg = Math.floor(Math.random() * 10) + 1;
+        playlist_model.new_playlist(email,codImg,nomePlaylist, function (err, succ, code) {
             if (err !== null) {
                 switch (code) {
                     case 1:

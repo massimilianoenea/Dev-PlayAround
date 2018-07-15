@@ -125,7 +125,7 @@ module.exports ={
         });
     },
 
-    new_playlist: function (email,img,nomePlaylist,callback){
+    new_playlist: function (email,codImg,nomePlaylist,callback){
         connection.getConnection(function (err,connection) {
             if (err) {
                 return callback(err, null, 1);
@@ -142,7 +142,7 @@ module.exports ={
                         return callback(err,null,3);
                     }
                     connection.release();
-                    return callback(null,{nome:nomePlaylist,codice:id,codiceImg:img},0);
+                    return callback(null,{nome:nomePlaylist,codice:id,img:"/image/playlist/default/"+codImg+".png"},0);
                 });
             });
         });
