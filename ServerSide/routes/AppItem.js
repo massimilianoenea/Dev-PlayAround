@@ -411,10 +411,11 @@ router.get("/le_tue_playlist",function(req,res){
            if(a.status === 200 && a.code === 0) {
                json = [];
                for (var playlist in a.data) {
+                var codImg = Math.floor(Math.random() * 10) + 1;
                    json.push({
                        nome: a.data[playlist].NOME_PLAYLIST,
                        codice: a.data[playlist].CODPLAYLIST,
-                       immagine: "/image/playlist/" + a.data[playlist].CODPLAYLIST+".jpg"
+                       immagine: "/image/playlist/default/"+codImg+".png"
                    });
                }
            }else{

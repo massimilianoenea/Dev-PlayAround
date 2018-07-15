@@ -142,7 +142,7 @@ module.exports ={
                         return callback(err,null,3);
                     }
                     connection.release();
-                    return callback(null,{nome:nomePlaylist,codice:id,img:"/image/playlist/default/"+codImg+".png"},0);
+                    return callback(null,{nome:nomePlaylist,codice:id,immagine:"/image/playlist/default/"+codImg+".png"},0);
                 });
             });
         });
