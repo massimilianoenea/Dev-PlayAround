@@ -131,7 +131,7 @@ module.exports = {
                             code: 3,
                             text: "l'utente "+username+" non ha creato nessuna playlist",
                             errorCode: err.code,
-                            status: 200
+                            status: 400
                         });
                     default:
                         return callback({code: 4, text: "Errore indefinito", errorCode: err.code, status: 400});
