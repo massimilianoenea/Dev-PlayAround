@@ -288,18 +288,21 @@ io.on('connection', function(client) {
                     var duration = 1;
                     var filename = __dirname + '/error.mp3';
                     linkBrano.GetLinkBrano(data.codbrano,function(a){
-                        console.log(a.link);
                        if(a.code === 0 && a.link !== undefined && a.link !== 'undefined'){
                            requestUrl = 'http://youtube.com/watch?v=' + a.link;
                            titolo = a.titolo;
                            ytdl.getInfo(requestUrl,{downloadURL: false},function(err, info) {
-                            duration = info.length_seconds;
-                            ss(SocketofClient).emit('audio-stream', stream, {duration: duration,mime:mimeType});
-                            client.in(data.username).emit('message',{username:data.username ,img:'/image/profile/' + data.username +'.png',canzone:{titolo:titolo,id:data.codbrano}});
-                            youtubeStream(requestUrl,mimeType).pipe(stream);
+                               if(err){
+                                    ss(SocketofClient).emit('audio-stream', stream, {duration: -1,mime:'mpeg'});
+                                    fs.createReadStream(filename).pipe(stream);
+                               }
+                                duration = info.length_seconds;
+                                ss(SocketofClient).emit('audio-stream', stream, {duration: duration,mime:mimeType});
+                                client.in(data.username).emit('message',{username:data.username ,img:'/image/profile/' + data.username +'.png',canzone:{titolo:titolo,id:data.codbrano}});
+                                youtubeStream(requestUrl,mimeType).pipe(stream);
                         });
                        }else{
-                            ss(SocketofClient).emit('audio-stream', stream, {duration: duration,mime:mimeType});
+                            ss(SocketofClient).emit('audio-stream', stream, {duration: -1,mime:'mpeg'});
                             fs.createReadStream(filename).pipe(stream);
                         }
                     });
