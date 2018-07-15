@@ -4,19 +4,35 @@ var GetHash = require('../../HashGenerator/HashGeneretor');
 module.exports ={
 
     playlist_giornaliera: function (giorno,ora,callback){
-          connection.getConnection(function (err,connection){
-             if(err)  {
-                 return callback(err,null,1);
-             }
-             var sql = "SELECT CODPLAYLIST,NOME FROM PLAYLIST_DEF";
-              connection.query(sql, function(err, results) {
-                  if (err) {
-                      return callback(err, null, 2);
-                  }
-                  connection.release();
-                  return callback(null,results,0);
-              });
-          });
+        connection.getConnection(function (err,connection){
+            if(err)  {
+                return callback(err,null,1);
+            }
+            if(ora >=5 && ora <=9){
+                ora = 0;
+            }else if(ora >=10 && ora <=14){
+                ora = 1;
+            }else if(ora >=15 && ora <=19){
+                ora = 2;
+            }else if(ora >=20 && ora <= 0){
+                ora = 3;
+            }else{
+                ora = 4;
+            }
+            var sql = "SELECT CODPLAYLIST FROM PLAYLIST_DAYHOURS WHERE GIORNO = ? AND ORA = ?";
+            connection.query(sql,[giorno,ora],function(err,results){
+                if(err) return callback(err,null,1);
+                var arr = results.map( function(el) { return el.CODPLAYLIST; });
+                sql = "SELECT CODPLAYLIST,NOME FROM PLAYLIST_DEF WHERE CODPLAYLIST IN ("+arr+")";
+                connection.query(sql,function(err, results) {
+                    if (err) {
+                        return callback(err, null, 2);
+                    }
+                    connection.release();
+                    return callback(null,results,0);
+                });
+            });
+        });
     },
 
     playlist_mood: function (callback){
@@ -109,7 +125,7 @@ module.exports ={
         });
     },
 
-    new_playlist: function (email,nomePlaylist,callback){
+    new_playlist: function (email,img,nomePlaylist,callback){
         connection.getConnection(function (err,connection) {
             if (err) {
                 return callback(err, null, 1);
@@ -126,7 +142,7 @@ module.exports ={
                         return callback(err,null,3);
                     }
                     connection.release();
-                    return callback(null,{nome:nomePlaylist,codice:id},0);
+                    return callback(null,{nome:nomePlaylist,codice:id,codiceImg:img},0);
                 });
             });
         });
